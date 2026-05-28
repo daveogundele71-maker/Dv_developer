@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dv_actual | Premium Excel Marketing & Automation</title>
+    <style>
+        /* Base Styling & Theme Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+        }
+
+        /* LIGHT THEME (Default) */
+        :root {
+            --bg-main: #f8fafc;
+            --bg-card: #ffffff;
+            --bg-nav: rgba(255, 255, 255, 0.9);
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --excel-green: #107c41;
+            --excel-accent: #21a366;
+            --border-color: #cbd5e1;
+            --shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        /* DARK THEME RULES */
+        [data-theme="dark"] {
+            --bg-main: #0b0f19;
+            --bg-card: #141b2d;
+            --bg-nav: rgba(11, 15, 25, 0.9);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border-color: #2e3c51;
+            --shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-top: 80px; /* Offset for fixed header */
+        }
+
+        /* Top Navigation Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 6%;
+            background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .brand {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .brand span {
+            color: white;
+            background: var(--excel-green);
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--excel-green);
+        }
+
+        .controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Premium Theme Toggle Button */
+        .theme-toggle {
+            background: var(--excel-green);
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Hero / Main Banner */
+        .hero {
+            padding: 6rem 6% 4rem 6%;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2.5rem;
+        }
+
+        /* Quick-Action Communication Hub */
+        .contact-hub {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-whatsapp { background-color: #25D366; color: white; }
+        .btn-telegram { background-color: #0088cc; color: white; }
+        .btn-call { background-color: var(--excel-green); color: white; }
+        .btn-email { background-color: #ea4335; color: white; }
+
+        /* Sections common rules */
+        .section-wrapper {
+            padding: 5rem 6%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        /* Grid-aligned Offerings */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--excel-green);
+            margin-bottom: 1rem;
+            background: rgba(16, 124, 65, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .card h3 {
+            font-size: 1.35rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Pricing Calculator Feature */
+        .calculator-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: var(--shadow);
+        }
+
+        .calc-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .calc-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .calc-group select, .calc-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .calc-result {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .calc-result h4 {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        .calc-price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--excel-green);
+            margin: 0.5rem 0;
+        }
+
+        /* Lead Intake Form */
+        .form-container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            box-shadow: var(--shadow);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            font-size: 0.9rem;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-main);
+            outline: none;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer styling */
+        footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 4rem;
+            background: var(--bg-card);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--excel-green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Hamburger Menu Icon (Mobile Only) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--text-main);
+            border-radius: 2px;
+        }
+
+        /* Tablet & Mobile Layout Shifts */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none; /* Can expand via future logic if desired */
+            }
+            .menu-toggle {
+                display: flex;
+            }
+            .hero h1 { font-size: 2.3rem; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header { padding: 1rem 4%; }
+            .hero { padding: 4rem 4% 2rem 4%; }
+            .hero h1 { font-size: 1.9rem; }
+            .btn { width: 100%; justify-content: center; }
+            .calculator-box, .form-container { padding: 1.5rem; }
+            .calc-price { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="brand"><span>Dv</span>actual</div>
+        <div class="controls">
+            <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">Switch Dark Mode 🌙</button>
+        </div>
+    </header>
+
+    <!-- Main Hero Ecosystem -->
+    <section class="hero" id="home">
+        <h1>Advanced Excel Engineering for Growth Marketing</h1>
+        <p>We transform raw spreadsheet infrastructure into high-converting marketing architectures. From custom automated data models to visual conversion dashboards—engineered directly by Dv_actual.</p>
+        
+        <div class="contact-hub">
+            <a href="https://wa.me/2349079469256" target="_blank" class="btn btn-whatsapp">
+                💬 WhatsApp Chat
+            </a>
+            <a href="https://t.me/+2349079469256" target="_blank" class="btn btn-telegram">
+                ✈️ Telegram Office
+            </a>
+            <a href="mailto:Daveogundele71@gmail.com" class="btn btn-email">
+                ✉️ Email Request
+            </a>
+            <a href="tel:09079469256" class="btn btn-call">
+                📞 Direct Call
+            </a>
+        </div>
+    </section>
+
+    <!-- Capabilities Grid -->
+    <section class="section-wrapper" id="services">
+        <h2 class="section-title">Standard Data Solutions</h2>
+        <p class="section-subtitle">High-performance configurations tailored for digital architectures and modern asset deployment.</p>
+        <div class="grid">
+            <div class="card">
+                <span class="card-tag">Automation</span>
+                <h3>Macro & VBA Pipeline</h3>
+                <p>Eliminate repetitive data manipulation. We deploy automated scripts that pull, sort, and process your marketing lead streams automatically.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag">Analytics</span>
+                <h3>Marketing ROI Engines</h3>
+                <p>Track customer acquisition costs (CAC) and campaign performance with multi-layered formulas built cleanly for performance analysis.</p>
+            </div>
+            <div class="card">
+                <span class="card-tag">Architecture</span>
+                <h3>Dashboard Visualizers</h3>
+                <p>Present conversion summaries to stakeholders using intuitive, executive-ready sheet architectures styled perfectly for decision making.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic Pricing Engine Feature -->
+    <section class="section-wrapper" id="pricing">
+        <h2 class="section-title">Instant Budget Estimator</h2>
+        <p class="section-subtitle">Select your architecture criteria below to compute an algorithmic budget baseline for your project.</p>
+        <div class="calculator-box">
+            <div class="calc-group">
+                <label for="projectType">System Architecture Complexity</label>
+                <select id="projectType" onchange="calculateProjectCost()">
+                    <option value="base">Basic Formula & Structure Cleanup</option>
+                    <option value="mid" selected>Advanced Dashboards & Interactive Analytics</option>
+                    <option value="high">Full Scale VBA / Macro Enterprise Automation</option>
+                </select>
+            </div>
+            <div class="calc-group">
+                <label for="dataStreams">Estimated Dynamic Data Columns / Sources</label>
+                <select id="dataStreams" onchange="calculateProjectCost()">
+                    <option value="1">1 - 5 Data Sources</option>
+                    <option value="2">6 - 15 Data Sources</option>
+                    <option value="3">15+ Complex / API Integrations</option>
+                </select>
+            </div>
+            <div class="calc-result">
+                <h4>Estimated Enterprise Investment Baseline</h4>
+                <div class="calc-price" id="estimatedPrice">₦45,000</div>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">*Final technical evaluations may adjust actual billing thresholds.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Intake Infrastructure -->
+    <section class="section-wrapper" id="contact">
+        <h2 class="section-title">Initiate Spreadsheet Audit</h2>
+        <p class="section-subtitle">Send your system requirements directly to our engineering queue.</p>
+        <div class="form-container">
+            <form action="mailto:Daveogundele71@gmail.com" method="post" enctype="text/plain">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Business / Operator Name</label>
+                        <input type="text" name="Client Name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Email Anchor</label>
+                        <input type="email" name="Email Address" placeholder="name@company.com" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Primary Communication Node</label>
+                    <input type="text" name="Contact Phone or Telegram" placeholder="e.g. Telegram: @username or Phone No." required>
+                </div>
+                <div class="form-group">
+                    <label>Architecture Pipeline Scope & Deadlines</label>
+                    <textarea name="Project Description" placeholder="Outline the manual bottlenecks you need eliminated, formula errors, or specific analytics dashboards required..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-call" style="width: 100%; justify-content: center; padding: 1rem;">
+                    🚀 Deploy Specification Blueprint
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Structural Footer Node -->
+    <footer>
+        <p>&copy; 2026 Dv_actual Solutions. All operational structures completely owned and controlled by you.</p>
+        <div class="footer-links">
+            <a href="mailto:Daveogundele71@gmail.com">Daveogundele71@gmail.com</a>
+            <a href="tel:09079469256">09079469256</a>
+            <a href="https://t.me/+2349079469256" target="_blank">Telegram Hub</a>
+        </div>
+    </footer>
+
+    <script>
+        // Interactive Light and Dark Mode logic controller
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const targetTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            
+            const btn = document.getElementById('themeBtn');
+            if(targetTheme === 'dark') {
+                btn.innerText = "Switch Light Mode ☀️";
+            } else {
+                btn.innerText = "Switch Dark Mode 🌙";
+            }
+        }
+
+        // Project Cost Calculator Logic Engine (Nigerian Naira Base Model)
+        function calculateProjectCost() {
+            const projectType = document.getElementById('projectType').value;
+            const dataStreams = parseInt(document.getElementById('dataStreams').value);
+            
+            let baseRate = 25000;
+            if (projectType === 'mid') baseRate = 45000;
+            if (projectType === 'high') baseRate = 85000;
+            
+            let multiplier = 1.0;
+            if (dataStreams === 2) multiplier = 1.25;
+            if (dataStreams === 3) multiplier = 1.55;
+            
+            const totalCalculated = Math.round(baseRate * multiplier);
+            document.getElementById('estimatedPrice').innerText = '₦' + totalCalculated.toLocaleString();
+        }
+
+        // Initialize cost calculation structure on page load
+        window.onload = function() {
+            calculateProjectCost();
+        };
+    </script>
+</body>
+</html>
